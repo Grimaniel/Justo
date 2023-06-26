@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <title>Lista de Hits</title>
+  <style>
+    /* Estilos adicionales para mejorar la apariencia */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .hit-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .hit-details {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .hit-status {
+      font-size: 12px;
+      color: #888;
+    }
+    .no-hits {
+      margin-top: 20px;
+      text-align: center;
+      color: #888;
+    }
+    .logout-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .logout-button:hover {
+      background-color: #d32f2f;
+    }
+
+    .create-hit-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      /*font-size: 16px;*/
+      transition: background-color 0.3s;
+    }
+
+    .create-hit-button:hover {
+      background-color: #555;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+ 
+</head>
+<body>
+  <div class="header">
+    <h1>Bienvenido <%= nombreUsuario %> - <%= tipoUsuario %></h1>
+  </div>
+  <div class="container">
+    <h1>Lista de Hits</h1>
+    <% if (hits.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% hits.forEach(hit => { %>
+            <tr>
+              <td class="hit-title"><%= hit.idobjetivos %></td>
+              <td class="hit-details"><%= hit.descripcion %></td>
+              <td class="hit-status">
+              <% if (hit.estado === 0) { %>
+                Sin Asignar
+              <% } else if (hit.estado === 1) { %>
+                Asignado
+              <% } else if (hit.estado === 2) { %>
+                Cerrado Éxito
+              <% } else if (hit.estado === 3) { %>
+                Cerrado Fallido
+              <% } %></td>
+              
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p class="no-hits">No se encontraron hits.</p>
+    <% } %>
+
+    <div class="action-buttons">
+      <a href="/hits/create" class="create-hit-button">Crear Nuevo Hit</a>
+    
+
+    <form action="/logout" method="POST">
+      <button type="submit" class="logout-button">Cerrar sesión</button>
+    </form>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .create-hit-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .create-hit-button:hover {
+      background-color: #555;
+    }
+  </style>
+  <title>Crear Hit</title>
+</head>
+<body>
+  <div class="header">
+    <h1>Crear Nuevo Hit</h1>
+  </div>
+
+  <div class="container">
+    <form action="/hits/create" method="POST">
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <textarea name="descripcion" id="descripcion" rows="5" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="estado">Estado:</label>
+        <select name="estado" id="estado" required>
+          <option value="0">Sin Asignar</option>
+          <option value="1">Asignado</option>
+          <option value="2">Cerrado Éxito</option>
+          <option value="3">Cerrado Fallido</option>
+        </select>
+      </div>
+
+      <button type="submit" class="create-hit-button">Crear Hit</button>
+    </form>
+  </div>
+</body>
+</html>
