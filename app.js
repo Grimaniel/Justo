@@ -15,10 +15,9 @@ app.use(session({
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: false }));
-// Configuración de la carpeta de archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Configuración de las rutas
+
 app.use(routesLogin);
 app.use(routesHits);
 app.use(routesLogout);
@@ -34,7 +33,6 @@ app.get('/hits', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'hits.html'));
 });
 
-// Configuración del puerto de escucha
 const port = 3000;
 app.listen(port, () => {
   console.log(`Servidor escuchando_________ en el puerto ${port}`);

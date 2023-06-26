@@ -9,7 +9,7 @@ const registerUser = async (req, res) => {
   const { email, password } = req.body;
     console.log("user y pass: ",req.body)
   try {
-    // Verificar si el usuario ya existe en la base de datos
+    
     const existingUser = await User.getUserByEmail(email);
     if (existingUser) {
       return res.render('register', { error: 'El correo electrónico ya está registrado' });
@@ -22,10 +22,10 @@ const registerUser = async (req, res) => {
         return res.render('register', { error: 'La contraseña no cumple los requisitos' });
     }
 
-    // Hash de la contraseña
+    
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Crear el usuario en la base de datos
+    
     const userId = await User.createUser(email, hashedPassword);
 
     res.redirect('/login');
